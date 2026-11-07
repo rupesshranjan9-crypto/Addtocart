@@ -1,14 +1,14 @@
 package com.addtocart;
 
 import org.openqa.selenium.By;
-
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Addtocart {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		
 		WebDriverManager.chromedriver().setup();//Browser 
 		ChromeDriver driver= new ChromeDriver(); //Browser type
@@ -25,6 +25,13 @@ public class Addtocart {
 		driver.findElement(By.xpath("//*[@id=\"search\"]/input")).sendKeys("I phone");
 		driver.findElement(By.xpath("//button[@class='btn btn-default btn-lg']")).click();
 		driver.findElement(By.xpath("//span[normalize-space()='Add to Cart']")).click();
+		
+		Thread.sleep(2000);
+		
+		WebElement message = driver.findElement(By.xpath("//div[contains(@class,'alert-success')]"));
+		
+		System.out.print(message.getText());
+		
 		
 		
 	}
